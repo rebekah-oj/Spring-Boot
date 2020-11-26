@@ -10,7 +10,7 @@ import java.util.Map;
 //lets spring know that it is a repository
 @Repository
 //class that gives us data from any desired database
-public class StudentDao {
+public class StudentDaoImpl {
 
     private static Map<Integer, Student> students;
 
@@ -35,8 +35,26 @@ public class StudentDao {
       return this.students.values();
     }
 
-    //get student by id
+    //get student by id from database
     public Student getStudentsById(int id){
         return this.students.get(id);
+    }
+
+    //delete student by id from database
+    public void removeStudentById(int id) {
+         this.students.remove(id);
+    }
+
+    //update student in database
+    public void updateStudent(Student student){
+        Student s = students.get(student.getId());
+        s.setCourse(student.getCourse());
+        s.setName(student.getName());
+        students.put(student.getId(), student);
+    }
+
+    //insert student into database
+    public void insertStudentToDatabase(Student student) {
+        this.students.put(student.getId(), student);
     }
 }
