@@ -1,4 +1,4 @@
-package Entity;
+package com.company.Entity;
 
 public class  Student {
 
